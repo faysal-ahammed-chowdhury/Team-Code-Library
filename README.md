@@ -1,14 +1,16 @@
 # Competitive Programming Notebook Generator
 
-This script generates a **LaTeX competitive programming notebook** from the `code/` directory and compiles it into a PDF.
+Generate a **LaTeX competitive programming notebook** from your `code/` folder and compile it into a PDF automatically.
+
+---
 
 ## Folder Rules
 
-* Each **folder** inside `code/` becomes a **section**.
-* Each **file** becomes a **subsection**.
-* Use numeric prefixes to control ordering.
+* Each **folder** → **section**
+* Each **file** → **subsection**
+* Use **numeric prefixes** (`01-`, `02-`) to control order; they are removed in the notebook.
 
-Example:
+**Example:**
 
 ```
 code/
@@ -19,39 +21,43 @@ code/
       └── 01-knapsack.cpp
 ```
 
-The prefix (`01-`, `02-`, etc.) is **only for ordering** and is removed in the final notebook.
+---
 
 ## Supported Files
 
-Code:
+* **Code:** `.cpp`, `.c`, `.cc`, `.py`, `.java` → syntax highlighted with `minted`
+* **Images:** `.png`, `.jpg`, `.jpeg`, `.pdf` → included in notebook
+* **LaTeX:** `.tex` → inserted directly
 
-* `.cpp`, `.c`, `.cc`
-* `.py`
-* `.java`
-
-Other:
-
-* `.png`, `.jpg`, `.jpeg`, `.pdf` → inserted as images
-* `.tex` → inserted directly as LaTeX content
-
-Code files are included using **minted** for syntax highlighting.
+---
 
 ## Usage
 
-Run:
-
-```
+```bash
 python3 script.py
 ```
 
-This will:
+This will generate `contents.tex` and compile `notebook.pdf` automatically.
 
-1. Generate `contents.tex`
-2. Compile `notebook.tex` into a PDF using `latexmk`.
+---
 
-## Requirements
+## Requirements (Linux)
 
-* Python 3
-* `latexmk`
-* LaTeX with `minted`
-* `pygments`
+Install everything on a fresh Ubuntu:
+
+```bash
+sudo apt update
+sudo apt install -y python3 python3-pip texlive-full latexmk
+pip3 install pygments
+```
+
+Verify installation:
+
+```bash
+python3 --version
+pdflatex --version
+latexmk -v
+pygmentize -V
+```
+
+Once done, run the script and your notebook is ready.
